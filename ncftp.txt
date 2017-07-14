@@ -1,0 +1,48 @@
+NcFTPPut 3.1.7
+
+Usages:
+  ncftpput [flags] remote-host remote-dir local-files...   (mode 1)
+  ncftpput -f login.cfg [flags] remote-dir local-files...  (mode 2)
+  ncftpput -c remote-host remote-path-name < stdin  (mode 3)
+
+Flags:
+  -u XX  Use username XX instead of anonymous.
+  -p XX  Use password XX with the username.
+  -P XX  Use port number XX instead of the default FTP service port (21).
+  -j XX  Use account XX with the account (deprecated).
+  -d XX  Use the file XX for debug logging.
+  -e XX  Use the file XX for error logging.
+  -U XX  Use value XX for the umask.
+  -t XX  Timeout after XX seconds.
+  -a     Use ASCII transfer type instead of binary.
+  -m     Attempt to mkdir the dstdir before copying.
+  -v/-V  Do (do not) use progress meters.
+  -f XX  Read the file XX for host, user, and password information.
+  -c     Use stdin as input file to write on remote host.
+  -A     Append to remote files instead of overwriting them.
+  -z/-Z  Do (do not) try to resume uploads (default: -Z).
+  -T XX  Upload into temporary files prefixed by XX.
+  -S XX  Upload into temporary files suffixed by XX.
+  -DD    Delete local file after successfully uploading it.
+  -b     Run in background (submit job to "ncftpbatch" and run).
+  -bb    Same as "-b" but queue only (do not run "ncftpbatch").
+  -E     Use regular (PORT) data connections.
+  -F     Use passive (PASV) data connections (default).
+  -y     Try using "SITE UTIME" to preserve timestamps on remote host.
+  -B XX  Try setting the SO_SNDBUF size to XX.
+  -r XX  Redial XX times until connected.
+  -W XX  Send raw FTP command XX after logging in.
+  -X XX  Send raw FTP command XX after each file transferred.
+  -Y XX  Send raw FTP command XX before logging out.
+  -R     Recursive mode; copy whole directory trees.
+
+Examples:
+  ncftpput -u gleason -p my.password Elwood.probe.net /home/gleason stuff.txt
+  ncftpput -u gleason Elwood.probe.net /home/gleason a.txt (prompt for pass)
+  ncftpput -a -u gleason -p my.password -m -U 007 Bozo.probe.net /tmp/tmpdir a.txt
+  tar cvf - /home | ncftpput -u operator -c Server.probe.net /backups/monday.tar
+
+Library version: LibNcFTP 3.1.7 (January 6, 2004).
+
+This is a freeware program by Mike Gleason (http://www.ncftp.com).
+This was built using LibNcFTP (http://www.ncftp.com/libncftp/).
